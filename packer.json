@@ -1,0 +1,37 @@
+{
+  "variables": {
+    "project_id": "",
+    "k8s_version": ""
+  },
+  "builders": [
+    {
+      "type": "googlecompute",
+      "project_id": "{{user `project_id`}}",
+      "source_image_family": "ubuntu-minimal-1810",
+      "machine_type": "n1-standard-4",
+      "zone": "europe-west1-b",
+      "ssh_username" : "root",
+      "disk_size": "20",
+      "image_name": "kubernetes-{{ user `k8s_version` | clean_image_name }}",
+      "image_labels": {
+        "track": "kubernetes",
+        "created": "{{ timestamp }}"
+      }
+    }
+  ],
+  "provisioners": [
+    {
+      "destination": "/tmp/bootstrap",
+      "source": "files",
+      "type": "file"
+    },
+    {
+      "type": "shell",
+      "script": "bootstrap.sh",
+      "environment_vars": [
+              "K8S_VERSION={{ user `k8s_version` }}"
+      ]
+    }
+  ]
+
+}

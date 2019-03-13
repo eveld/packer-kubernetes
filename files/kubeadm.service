@@ -1,0 +1,14 @@
+[Unit]
+Description=Kubeadm
+DefaultDependencies=no
+After=docker.service network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/init.sh
+StandardOutput=journal
+
+
+[Install]
+WantedBy=multi-user.target
