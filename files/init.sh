@@ -61,7 +61,7 @@ roleRef:
   apiGroup: ""
 EOF
 
-helm --kubeconfig=/etc/kubernetes/admin.conf init
+helm --kubeconfig=/etc/kubernetes/admin.conf init --wait
 kubectl --kubeconfig=/etc/kubernetes/admin.conf create clusterrolebinding tiller-cluster-rule --clusterrole=cluster-admin --serviceaccount=kube-system:tiller
 kubectl --kubeconfig=/etc/kubernetes/admin.conf patch deploy --namespace kube-system tiller-deploy -p '{"spec":{"template":{"spec":{"serviceAccount":"tiller"}}}}'
 

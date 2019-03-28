@@ -65,6 +65,25 @@ docker pull quay.io/calico/kube-controllers:v3.3.2
 docker pull quay.io/coreos/etcd:v3.3.9
 docker pull k8s.gcr.io/kubernetes-dashboard-amd64:v1.10.1
 
+
+# Pre pull workshop images
+docker pull nicholasjackson/emojify-website:v0.6.2
+docker pull nicholasjackson/emojify-api:v0.8.0
+docker pull nicholasjackson/emojify-cache:v0.4.3
+docker pull nicholasjackson/emojify-traffic:v0.1.3
+docker pull nginx:latest
+docker pull machinebox/facebox
+docker pull prom/statsd-exporter:latest
+
+docker pull consul:1.4.3
+docker pull hashicorp/consul-k8s:0.6.0
+
+docker pull prom/prometheus:v2.6.0
+docker pull grafana/grafana:6.0.0-beta3
+docker pull prom/statsd-exporter:latest
+docker pull k8s.gcr.io/metrics-server-amd64:v0.3.1
+
+
 MANIFESTS=/etc/kubernetes/manifests
 
 # Download Calico manifests
