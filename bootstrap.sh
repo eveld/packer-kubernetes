@@ -32,6 +32,7 @@ apt-get -y install \
     inotify-tools \
     socat make golang-go \
     docker.io \
+    unzip \
     bash-completion
 
 

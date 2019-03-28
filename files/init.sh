@@ -65,6 +65,27 @@ helm --kubeconfig=/etc/kubernetes/admin.conf init --wait
 kubectl --kubeconfig=/etc/kubernetes/admin.conf create clusterrolebinding tiller-cluster-rule --clusterrole=cluster-admin --serviceaccount=kube-system:tiller
 kubectl --kubeconfig=/etc/kubernetes/admin.conf patch deploy --namespace kube-system tiller-deploy -p '{"spec":{"template":{"spec":{"serviceAccount":"tiller"}}}}'
 
+mkdir -p /var/lib/kubernetes/data
+echo "Creating persistent volume..."
+cat << EOF | kubectl apply --kubeconfig=/etc/kubernetes/admin.conf -f -
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: pv-volume
+  labels:
+    type: local
+spec:
+  storageClassName: ""
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /var/lib/kubernetes/data
+EOF
+
+kubectl --kubeconfig=/etc/kubernetes/admin.conf create ns default
+
 echo "source /usr/share/bash-completion/bash_completion" >> ~/.bashrc
 echo "source <(kubectl completion bash)" >> ~/.bashrc
 echo "alias k=kubectl" >> ~/.bashrc
