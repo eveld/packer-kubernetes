@@ -12,4 +12,4 @@ build: check-variables
 	packer build -var 'project_id=${PROJECT}' -var 'k8s_version=${K8S_VERSION}' packer.json
 
 force-build: check-variables
-	packer build -force -var 'project_id=${PROJECT}' -var 'k8s_version=${K8S_VERSION}' packer.json
+	packer build -force -var 'project_id=${PROJECT}' -var 'k8s_version=${K8S_VERSION}' -var 'tag=${TAG}' packer.json

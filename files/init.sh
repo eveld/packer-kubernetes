@@ -71,7 +71,7 @@ cat << EOF | kubectl apply --kubeconfig=/etc/kubernetes/admin.conf -f -
 kind: PersistentVolume
 apiVersion: v1
 metadata:
-  name: pv-volume
+  name: data-default
   labels:
     type: local
 spec:

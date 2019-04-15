@@ -1,7 +1,8 @@
 {
   "variables": {
     "project_id": "",
-    "k8s_version": ""
+    "k8s_version": "",
+    "tag": "default"
   },
   "builders": [
     {
@@ -12,7 +13,7 @@
       "zone": "europe-west1-b",
       "ssh_username" : "root",
       "disk_size": "20",
-      "image_name": "kubernetes-{{ user `k8s_version` | clean_image_name }}",
+      "image_name": "kubernetes-{{ user `k8s_version` | clean_image_name }}-{{ user `tag` }}",
       "image_labels": {
         "track": "kubernetes",
         "created": "{{ timestamp }}"
